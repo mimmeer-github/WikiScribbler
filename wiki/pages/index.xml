@@ -1,0 +1,10 @@
+<!DOCTYPE ws>
+<ws>
+  <info>
+    <title>HEAD</title>
+  </info>
+  <article>
+    <head2>HELLO!</head2>
+    <para>This is a demo of the WIKISCRIBBLER language, it should show up!</para>
+  </article>
+</ws>
