@@ -1,9 +1,33 @@
+function parseChild(child, parentArray) { // Added parentArray
+  const elementData = { //create a new object
+    tag_name: child.tagName,
+    contents: "", // Start with empty content
+    children: [] // Array for children
+  };
+
+  if (child.nodeType === 3) { // 3 is Node.TEXT_NODE
+    elementData.contents = child.textContent;
+  }
+
+  parentArray.push(elementData); // Add to the parent
+
+  for (let i = 0; i < child.childNodes.length; i++) { //childNodes
+    parseChild(child.childNodes[i], elementData.children); // Recursive call
+  }
+}
+
 function parse(xml) {
 	var rootElement = xml.getElementsByTagName("ws")[0];
 	var infoElement = rootElement.getElementsByTagName("info")[0];
-	var page = [];
+	var articleElement = rootElement.getElementsByTagName("article")[0];
+	var pageContents = [];
+	for (i = 0; i < articleElement.childNodes.length; i++) {
+		var element = articleElement.childNodes[i];
+		parseChild(element, pageContents);
+	}
 	var title = infoElement.getElementsByTagName("title")[0];
-	page.push({ "tag_name": "title", "contents": title.textContent });
+	var page = { "title": title.textContent, "contents": pageContents };
+	
 	console.log(page);
 }
 
