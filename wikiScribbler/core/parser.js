@@ -1,4 +1,22 @@
-function parseChild(child, parentArray) { // Added parentArray
+/*
+ ______     ______   ______     __  __     ______     ______   
+/\  ___\   /\  == \ /\  == \   /\ \/\ \   /\  ___\   /\  ___\  
+\ \___  \  \ \  _-/ \ \  __<   \ \ \_\ \  \ \ \____  \ \  __\  
+ \/\_____\  \ \_\    \ \_\ \_\  \ \_____\  \ \_____\  \ \_____\
+  \/_____/   \/_/     \/_/ /_/   \/_____/   \/_____/   \/_____/
+                                                               
+ ______   ______     ______     ______     ______     ______   
+/\  == \ /\  __ \   /\  == \   /\  ___\   /\  ___\   /\  == \  
+\ \  _-/ \ \  __ \  \ \  __<   \ \___  \  \ \  __\   \ \  __<  
+ \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
+  \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
+
+Version 1.0.0
+Made by Mimmeer
+*/
+function parseChild(child, parentArray, rootXml) {
+  const rootElement = rootXml.getElementsByTagName("ws")[0];
+  const articleElement = rootElement.getElementsByTagName("article")[0];
   const elementData = { //create a new object
     tag_name: child.tagName,
     contents: "", // Start with empty content
@@ -9,10 +27,13 @@ function parseChild(child, parentArray) { // Added parentArray
     elementData.contents = child.textContent;
   }
 
-  parentArray.push(elementData); // Add to the parent
-
-  for (let i = 0; i < child.childNodes.length; i++) { //childNodes
-    parseChild(child.childNodes[i], elementData.children); // Recursive call
+  if (child.nodeType === 3 && parentArray != articleElement) {
+  	parentArray.push(elementData); // Add to the parent
+	  for (let i = 0; i < child.childNodes.length; i++) { //childNodes
+    		parseChild(child.childNodes[i], elementData.children); // Recursive call
+  	  }
+  }
+  else {
   }
 }
 
@@ -23,7 +44,7 @@ function parse(xml) {
 	var pageContents = [];
 	for (let i = 0; i < articleElement.childNodes.length; i++) {
 		var element = articleElement.childNodes[i];
-		parseChild(element, pageContents);
+		parseChild(element, pageContents, xml);
 	}
 	var title = infoElement.getElementsByTagName("title")[0];
 	var page = { "title": title.textContent, "contents": pageContents };
