@@ -21,7 +21,7 @@ function parse(xml) {
 	var infoElement = rootElement.getElementsByTagName("info")[0];
 	var articleElement = rootElement.getElementsByTagName("article")[0];
 	var pageContents = [];
-	for (i = 0; i < articleElement.childNodes.length; i++) {
+	for (let i = 0; i < articleElement.childNodes.length; i++) {
 		var element = articleElement.childNodes[i];
 		parseChild(element, pageContents);
 	}
