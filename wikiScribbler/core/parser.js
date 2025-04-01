@@ -11,7 +11,7 @@
  \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
   \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
 
-Version 1.0.0-beta.1
+Version 1.0.0-rc.0
 Made by Mimmeer
 */
 function parseChild(child, parentArray) {
@@ -42,7 +42,7 @@ function parse(xml) {
 	var pageContents = [];
 	for (let i = 0; i < articleElement.childNodes.length; i++) {
 		var element = articleElement.childNodes[i];
-		parseChild(element, pageContent);
+		parseChild(element, articleElement);
 	}
 	var title = infoElement.getElementsByTagName("title")[0];
 	var page = { "title": title.textContent, "contents": pageContents };
