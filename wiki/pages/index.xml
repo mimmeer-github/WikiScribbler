@@ -1,10 +1,14 @@
 <!DOCTYPE ws>
 <ws>
   <info>
-    <title>HEAD</title>
+    <title>Hello World!</title>
   </info>
   <article>
-    <head2>HELLO!</head2>
-    <para>This is a demo of the WIKISCRIBBLER language, it should show up!</para>
+    <head2>Hello World, my first WikiScriber heading!</head2>
+    <para>Welcome to WikiScriber! We will introduce the avalible features here:</para>
+    <list type="bullet">
+      <li><code>;;lt;head[insert number];;gt;</code>: Creates a heading, supports numbers 1-6, type 1 shouldn't be used however because it's also the title level.</li>
+      <li><code>;;lt;para;;gt;</code>: Creates a paragraph, pretty self-explanitory!</li>
+      <li><code>;;lt;link href="[insert link]";;gt;</code>: Creates a link, uses a href parameter for where it goes.</li>
   </article>
 </ws>
