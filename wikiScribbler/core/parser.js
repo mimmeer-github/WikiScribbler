@@ -27,13 +27,13 @@ function parseChild(child, parentArray, rootXml) {
     elementData.contents = child.textContent;
   }
 
-  if !(child.nodeType === 3 && parentArray != articleElement) {
-  	parentArray.push(elementData); // Add to the parent
+  if (child.nodeType === 3 && parentArray != articleElement) {
+  }
+  else {
+	  parentArray.push(elementData); // Add to the parent
 	  for (let i = 0; i < child.childNodes.length; i++) { //childNodes
     		parseChild(child.childNodes[i], elementData.children); // Recursive call
   	  }
-  }
-  else {
   }
 }
 
