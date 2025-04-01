@@ -14,10 +14,7 @@
 Version 1.0.0-beta.1
 Made by Mimmeer
 */
-function parseChild(child, parentArray, rootXml, subElements) {
-  const rootElement = rootXml.getElementsByTagName("ws")[0];
-  const articleElement = rootElement.getElementsByTagName("article")[0];
-  
+function parseChild(child, parentArray) {
   const elementData = { //create a new object
     tag_name: child.tagName,
     contents: "", // Start with empty content
@@ -45,7 +42,7 @@ function parse(xml) {
 	var pageContents = [];
 	for (let i = 0; i < articleElement.childNodes.length; i++) {
 		var element = articleElement.childNodes[i];
-		parseChild(element, pageContents, xml);
+		parseChild(element, pageContent);
 	}
 	var title = infoElement.getElementsByTagName("title")[0];
 	var page = { "title": title.textContent, "contents": pageContents };
