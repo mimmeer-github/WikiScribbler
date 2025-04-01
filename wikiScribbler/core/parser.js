@@ -11,12 +11,13 @@
  \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
   \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
 
-Version 1.0.0
+Version 1.0.0-beta.1
 Made by Mimmeer
 */
-function parseChild(child, parentArray, rootXml) {
+function parseChild(child, parentArray, rootXml, subElements) {
   const rootElement = rootXml.getElementsByTagName("ws")[0];
   const articleElement = rootElement.getElementsByTagName("article")[0];
+  
   const elementData = { //create a new object
     tag_name: child.tagName,
     contents: "", // Start with empty content
@@ -27,7 +28,7 @@ function parseChild(child, parentArray, rootXml) {
     elementData.contents = child.textContent;
   }
 
-  if (child.nodeType === 3 && parentArray != articleElement) {
+  if (child.nodeType === 3 && child.textContent.trim() == null || child.textContent.trim() == "\n") {
   }
   else {
 	  parentArray.push(elementData); // Add to the parent
