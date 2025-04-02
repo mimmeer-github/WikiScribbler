@@ -11,10 +11,10 @@
  \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
   \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
 
-Version 1.0.0-rc.1
+Version 1.0.0-rc.2
 Made by Mimmeer
 */
-function parseChild(child, parentArray) {
+function parseChild(child, parentArray, parentObject = null) {
   const elementData = { //create a new object
     tag_name: child.tagName,
     contents: "", // Start with empty content
@@ -25,12 +25,12 @@ function parseChild(child, parentArray) {
     elementData.contents = child.textContent;
   }
 
-  if (child.nodeType === 3 && child.textContent.trim() == null || child.textContent.trim() == "\n") {
+  if (typeof child.tagName == 'undefined' && parentObject == null) {
   }
   else {
 	  parentArray.push(elementData); // Add to the parent
 	  for (let i = 0; i < child.childNodes.length; i++) { //childNodes
-    		parseChild(child.childNodes[i], elementData.children); // Recursive call
+    		parseChild(child.childNodes[i], elementData.children, elementData); // Recursive call
   	  }
   }
 }
