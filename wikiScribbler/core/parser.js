@@ -11,7 +11,7 @@
  \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
   \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
 
-Version 1.0.0-rc.2
+Version 1.0.0-rc.3
 Made by Mimmeer
 */
 function parseChild(child, parentArray, parentObject = null) {
@@ -22,12 +22,10 @@ function parseChild(child, parentArray, parentObject = null) {
   };
 
   if (child.nodeType === 3) { // 3 is Node.TEXT_NODE
-    elementData.contents = child.textContent;
+    parentObject.contents += child.textContent;
   }
 
-  if (typeof child.tagName == 'undefined' && parentObject == null) {
-  }
-  else {
+  if (child.nodeType == 1) {
 	  parentArray.push(elementData); // Add to the parent
 	  for (let i = 0; i < child.childNodes.length; i++) { //childNodes
     		parseChild(child.childNodes[i], elementData.children, elementData); // Recursive call
