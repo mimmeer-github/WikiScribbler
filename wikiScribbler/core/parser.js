@@ -11,7 +11,7 @@
  \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
   \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
 
-Version 1.0.0-rc.0
+Version 1.0.0-rc.1
 Made by Mimmeer
 */
 function parseChild(child, parentArray) {
