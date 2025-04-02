@@ -11,18 +11,22 @@
  \ \_\    \ \_\ \_\  \ \_\ \_\  \/\_____\  \ \_____\  \ \_\ \_\
   \/_/     \/_/\/_/   \/_/ /_/   \/_____/   \/_____/   \/_/ /_/
 
-Version 1.0.0-rc.3
+Version 1.0.0-rc.4
 Made by Mimmeer
 */
 function parseChild(child, parentArray, parentObject = null) {
-  const elementData = { //create a new object
+  var elementData = { //create a new object
     tag_name: child.tagName,
     contents: "", // Start with empty content
     children: [] // Array for children
   };
 
-  if (child.nodeType === 3) { // 3 is Node.TEXT_NODE
+  if (child.nodeType === 3 && parentObject != null) { // 3 is Node.TEXT_NODE
     parentObject.contents += child.textContent;
+  }
+  else if (child.nodeType === 3) {
+    elementData.tag_name = 'para';
+    elementData.contents = child.textContent;
   }
 
   if (child.nodeType == 1) {
