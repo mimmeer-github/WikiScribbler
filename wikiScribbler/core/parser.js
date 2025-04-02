@@ -42,7 +42,7 @@ function parse(xml) {
 	var pageContents = [];
 	for (let i = 0; i < articleElement.childNodes.length; i++) {
 		var element = articleElement.childNodes[i];
-		parseChild(element, articleElement);
+		parseChild(element, pageContents);
 	}
 	var title = infoElement.getElementsByTagName("title")[0];
 	var page = { "title": title.textContent, "contents": pageContents };
