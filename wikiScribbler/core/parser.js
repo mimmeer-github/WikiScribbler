@@ -22,7 +22,9 @@ function parseChild(child, parentArray, parentObject = null) {
   };
 
   if (child.nodeType === 3 && parentObject != null) { // 3 is Node.TEXT_NODE
-    parentObject.contents += child.textContent;
+    if (child.textContent.trim() != null || child.textContent.trim() != "\n") {
+      parentObject.contents += child.textContent;
+    }
   }
   else if (child.nodeType === 3) {
     elementData.tag_name = 'para';
